@@ -1,0 +1,36 @@
+label {
+  color: grey;
+}
+
+body {
+  background-color: #63738a;
+}
+
+.reg-alert {
+  margin: 0 auto;
+  margin-top: 0px;
+  max-width: 500px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+.reg-head {
+  display: flex;
+  align-items: center;
+}
+
+.reg-head h2 {
+  padding: 0 10px;
+  color: #3c3737;
+}
+
+.reg-head>div {
+  background-color: #c6b3b3;
+  width: 100%;
+  height: 2px;
+  outline: none;
+}
+
+.text-muted {
+  color: #aa2020 !important;
+}

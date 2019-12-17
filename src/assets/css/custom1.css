@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Kaushan+Script|Lobster|Varela+Round&display=swap");
+
+.cert-container {
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+}
+
+.cert-template {
+  max-width: 150px;
+  padding: 10px;
+}
+
+h4 {
+  color: goldenrod;
+  font-size: 3em;
+  font-family: "Varela Round", sans-serif;
+  font-weight: 900;
+}
+
+.top-cert-input {
+  display: flex;
+}
+
+.cert-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: auto;
+}
+
+.cert-input > :first-child {
+  border-bottom: 1px solid goldenrod;
+  width: 50%;
+  font-size: 20px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.cert-input .head {
+  font-size: 30px;
+  font-family: "Kaushan Script", cursive;
+}
+
+.cert-input > :first-child::first-letter {
+  text-transform: uppercase;
+}
+
+.cert-input > :last-child {
+  margin: 0;
+  padding-top: 2px;
+  font-size: 8px;
+  line-height: 0.5rem;
+}
+
+.cert-extra {
+  font-size: 15px;
+  color: grey;
+  margin: 0;
+  padding: 10px;
+  line-height: 1rem;
+}
+
+@page {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  size: 8.5in 11in landscape;
+}
+
+app-root>* {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    size: 8.5in 11in landscape;
+  }
+}
+
+@media print, screen and (max-width: 991px) {
+  h4 {
+    font-size: 2em;
+    margin: 0;
+  }
+
+  .cert-input .head {
+    font-size: 20px !important;
+  }
+
+  .cert-input > :first-child {
+    font-size: 17px;
+  }
+
+  .cert-container {
+    top: 25px;
+  }
+
+  .cert-template {
+    max-width: 150px;
+    margin-top: 25px;
+  }
+
+  .cert-extra {
+    font-size: 12px;
+  }
+}
+

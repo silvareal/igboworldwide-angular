@@ -1,0 +1,374 @@
+<div class="container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class"></div>
+  </ng-template>
+  <div class="alert alert-dark reg-alert" role="alert">
+    <div class="row" style="margin: 25px 0;">
+      <div class="col align-self-center">
+        <div class="text-center">
+          <div class="reg-head">
+            <div></div>
+            <h2>Register</h2>
+            <div></div>
+          </div>
+
+          <p style="color: grey; margin-bottom: 30px;">
+            Register as a member of ohanaezendigboworldwide
+          </p>
+        </div>
+
+        <form #form="ngForm" ngNativeValidate >
+          <div class="form-group">
+            <input
+              type="input"
+              [(ngModel)]="register.username"
+              class="form-control"
+              id="userName"
+              name="userName"
+              aria-describedby="userName"
+              placeholder="Username"
+              #username="ngModel"
+              minlength="5"
+              required
+            />
+            <p style="color: grey; font-size: 10px">
+              Enter your username with combination of number eg. username123
+            </p>
+
+            <div
+              [hidden]="username.valid || username.untouched"
+              class="alert alert-danger"
+              style="font-size: 15px;margin-top: -18px;"
+            >
+              Username is required (minimum of 5 characters)
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4 mb-3">
+              <input
+                type="input"
+                [(ngModel)]="register.first_name"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                aria-describedby="firstName"
+                placeholder="First name"
+                required
+              />
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <input
+                type="input"
+                [(ngModel)]="register.surname"
+                class="form-control"
+                name="surName"
+                id="surName"
+                aria-describedby="surName"
+                placeholder="middle name"
+                required
+              />
+            </div>
+            <div class="form-group col-md-4 mb-3">
+              <input
+                type="input"
+                [(ngModel)]="register.last_name"
+                class="form-control"
+                id="LastName"
+                aria-describedby="lastName"
+                name="lastName"
+                placeholder="Last name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-3">
+              <select
+                #country
+                class="custom-select mr-sm-2"
+                [(ngModel)]="register.country_of_residence"
+                (change)="changeCountry($event.target.value)"
+                name="countryOfResidence"
+                required
+              >
+                <option value="">Country Of Residence</option>
+                <option
+                  *ngFor="let country of countryList"
+                  value="{{country.country}}"
+                >
+                  {{ country.country }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+              <select
+                class="custom-select mr-sm-2"
+                [(ngModel)]="register.city_of_residence"
+                name="cityOfResidence"
+                required
+              >
+                <option value="">City Of Residence</option>
+                <option *ngFor="let states of state" value="{{states}}"
+                  >{{ states }}</option
+                >
+              </select>
+            </div>
+          </div>
+
+          <div
+            *ngIf="country.value === 'Nigeria'; then thenBlock else elseBlock"
+          ></div>
+          <ng-template #elseBlock>
+            <div class="form-row">
+              <div class="form-group col-md-5 mb-3">
+                <input
+                  type="input"
+                  [(ngModel)]="register.state_of_residence"
+                  class="form-control"
+                  id="stateOfResidence"
+                  name="stateOfResidence"
+                  aria-describedby="stateOfResidence"
+                  placeholder="State Of Residence"
+                  required
+                />
+              </div>
+              <div class="form-group col-md-7 mb-3">
+                <input
+                  type="input"
+                  [(ngModel)]="register.residential_address"
+                  class="form-control"
+                  name="residentialAddress"
+                  id="residentialAddress"
+                  aria-describedby="residentialAddress"
+                  placeholder="Residential Address"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-3">
+                <input
+                  type="tel"
+                  [(ngModel)]="register.phone_number"
+                  class="form-control"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  aria-describedby="phoneNumber"
+                  placeholder="Phone Number"
+                  required
+                />
+              </div>
+              <div class="form-group col-md-6 mb-3">
+                <input
+                  type="email"
+                  [(ngModel)]="register.email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  aria-describedby="email"
+                  placeholder="Email Address"
+                  required
+                />
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #thenBlock>
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-3">
+                <select
+                  [(ngModel)]="register.state_of_residence"
+                  class="custom-select mr-sm-2"
+                  (change)="changeStateOfResidenceList($event.target.value)"
+                  name="stateOfResidence"
+                  required
+                >
+                  <option value="">state of residence</option>
+                  <option
+                    *ngFor="let s of stateOfResidenceList"
+                    value="{{s.name}}"
+                  >
+                    {{ s.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group col-md-6 mb-3">
+                <select
+                  [(ngModel)]="register.lga_of_residence"
+                  class="custom-select mr-sm-2"
+                  name="lgaOfResidence"
+                  required
+                  >
+                  <option value="">LGA Of Residence</option>
+                  <option *ngFor="let states of locals" value="{{states}}"
+                    >{{ states }}</option
+                  >
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-5 mb-3">
+                <input
+                  type="tel"
+                  [(ngModel)]="register.phone_number"
+                  class="form-control"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  aria-describedby="phoneNumber"
+                  placeholder="Phone Number"
+                  required
+                />
+              </div>
+              <div class="form-group col-md-7 mb-3">
+                <input
+                  type="input"
+                  [(ngModel)]="register.residential_address"
+                  class="form-control"
+                  name="residentialAddress"
+                  id="residentialAddress"
+                  aria-describedby="residentialAddress"
+                  placeholder="Residential Address"
+                  required
+                />
+              </div>
+            </div>
+          </ng-template>
+
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-3">
+              <select
+                [(ngModel)]="register.state_of_origin"
+                class="custom-select mr-sm-2"
+                (change)="changeState($event.target.value)"
+                name="stateOfOrigin"
+                required
+              >
+                <option value="">state of Origin</option>
+                <option *ngFor="let state of stateList" value="{{state.name}}">
+                  {{ state.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+              <select
+                class="custom-select mr-sm-2"
+                [(ngModel)]="register.local_government_area"
+                name="localGovernmentArea"
+                required
+              >
+                <option value="">LGA</option>
+                <option *ngFor="let lgas of lga" value="{{lgas}}"
+                  >{{ lgas }}</option
+                >
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <input
+              type="input"
+              [(ngModel)]="register.town"
+              class="form-control"
+              name="residentialAddress"
+              aria-describedby="town"
+              placeholder="Town"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-3">
+              <input
+                [(ngModel)]="register.password"
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+                #password="ngModel"
+                minlength="6"
+              />
+              <p style="color: grey; font-size: 10px"></p>
+              <div
+                [hidden]="password.valid || password.untouched"
+                class="alert alert-danger"
+                style="font-size: 15px;"
+              >
+                Enter your password (atleast 6 characters).
+              </div>
+            </div>
+
+            <div class="form-group col-md-6 mb-3">
+              <input
+                type="password"
+                class="form-control"
+                [(ngModel)]="register.password_confirm"
+                id="password1"
+                placeholder="Confirm Password"
+                pattern="{{ password.value }}"
+                name="confirmPassword"
+                #confirmPassword="ngModel"
+                required
+              />
+              <p style="color: grey; font-size: 10px"></p>
+
+              <div
+                [hidden]="confirmPassword.valid ||  confirmPassword.untouched"
+                class="alert alert-danger"
+                style="font-size: 15px;"
+              >
+                Password does not match.
+              </div>
+            </div>
+          </div>
+
+          <!-- <input
+            [hidden]="country.value === 'Nigeria'"
+            (click)="pay()"
+            type="Register Now"
+            class="btn btn-success"
+            style="width: 100%; margin-top: 15px;"
+            value="submit"
+          /> -->
+
+          <input [hidden]="country.value === 'Nigeria'" type="submit" class="btn btn-success"
+            style="width: 100%; margin-top: 15px;" value="Register Now" angular4-paystack
+            [paystackOptions]="options_dollars" (paymentInit)="paymentInit()" (close)="paymentCancel()"
+            (onClose)="paymentOnClose()" (callback)="paymentDone($event)" [disabled]="form.invalid"/>
+
+          <input
+            [hidden]="country.value !== 'Nigeria'"
+            type="submit"
+            class="btn btn-success"
+            style="width: 100%; margin-top: 15px;"
+            value="Register Now"
+            angular4-paystack
+            [paystackOptions]="options"
+            (paymentInit)="paymentInit()"
+            (close)="paymentCancel()"
+            (onClose)="paymentOnClose()"
+            (callback)="paymentDone($event)"
+            [disabled]="form.invalid"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-center" style="margin-bottom: 20px; padding: 10px;">
+    Already a member?
+    <a [routerLink]="['/login']" style="color: black; font-weight: 900" href=""
+      >Login</a
+    >
+  </p>
+  <ngx-loading
+    [show]="loading"
+    [config]="{ backdropBorderRadius: '3px' }"
+    [template]="customLoadingTemplate"
+  >
+  </ngx-loading>
+</div>

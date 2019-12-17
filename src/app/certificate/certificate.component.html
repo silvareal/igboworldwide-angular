@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="container">
+    <ng-template #customLoadingTemplate>
+      <div class="custom-class">
+        <h3 style="text-align: center;">Generating Certificate ....</h3>
+      </div>
+    </ng-template>
+    <div style="position: relative;" id="print-section" *ngIf="auth">
+      <img
+        src="./assets/images/indigbo.png"
+        style="width: 100%;"
+        alt=""
+        srcset=""
+      />
+      <div class="cert-container">
+        <img
+          class="cert-template"
+          src="./assets/images/logo.png"
+          style="width: 100%;"
+          alt=""
+          srcset=""
+        />
+
+        <h4>OHANAEZE NDIGBO WORLDWIDE <br />MEMBERSHIP CERTIFICATE</h4>
+        <p class="cert-extra">This is to certify that</p>
+        <div class="cert-input">
+          <p style="font-weight: bold;" class="head">
+            {{ auth.first_name }} {{ auth.last_name }} {{ auth.surname }}
+          </p>
+          <p>NAME</p>
+        </div>
+
+        <p class="cert-extra cert-none">from</p>
+
+        <div class="top-cert-input cert-none">
+          <div class="cert-input">
+            <p>{{ auth.state_of_origin }}</p>
+            <p>STATE</p>
+          </div>
+
+          <div class="cert-input">
+            <p >{{ auth.local_government_area }}</p>
+            <p>LOCAL GOVT.</p>
+          </div>
+
+          <div class="cert-input">
+            <p>{{ auth.town }}</p>
+            <p>TOWN</p>
+          </div>
+        </div>
+
+        <p class="cert-extra cert-none">
+          Is a registered member of<br/>Ohaenaeze Ndigbo Worldwide
+        </p>
+
+        <div class="top-cert-input cert-none">
+          <div class="cert-input">
+            <p>{{this.auth.currentDate | date}}</p>
+            <p>DATE</p>
+          </div>
+
+          <div class="cert-input">
+            <p>sylvernus</p>
+            <p>PRESIDENT GENERAL <br />SIGNATURE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    [disabled]="!auth.first_name"
+    class="btn btn-success mb-3"
+    style="width: 100%;margin-top: 10px;"
+    styleSheetFile="assets/css/custom1.css"
+    printSectionId="print-section"
+    ngxPrint
+  >
+    <span class="glyphicon glyphicon-print"></span> print
+  </button>
+  <ngx-loading
+    [show]="loading"
+    [config]="{ backdropBorderRadius: '3px' }"
+    [template]="customLoadingTemplate"
+  >
+  </ngx-loading>
+</div>
