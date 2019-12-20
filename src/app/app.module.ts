@@ -1,8 +1,9 @@
+import { UsernameMatchDirective } from './common/username.directive';
 import { LoginComponent } from './registration/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPrintModule } from 'ngx-print';
 
 import { AppComponent } from './app.component';
@@ -21,13 +22,15 @@ import { ToastrModule } from 'ngx-toastr';
     RegistrationComponent,
     LoginComponent,
     CertificateComponent,
+    UsernameMatchDirective,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    Angular4PaystackModule.forRoot('pk_live_fa2bd0ace7447f3a41056ef64acacae2a3b13cbe'),
+    Angular4PaystackModule.forRoot('pk_test_a211b11643605eeecc1e6c10c6a0fec15b0c4a09'),
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgxPrintModule,
     BrowserAnimationsModule, // required animations module

@@ -1758,8 +1758,7 @@ export class RegistrationComponent implements OnInit {
       password: '',
       password_confirm: '',
     },
-    this.userService,
-    this.paymentInit
+    this.userService
   }
 
   changeState(state) {

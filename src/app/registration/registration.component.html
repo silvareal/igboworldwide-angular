@@ -17,31 +17,43 @@
           </p>
         </div>
 
-        <form #form="ngForm" ngNativeValidate >
+        <form #form="ngForm" 
+  autocomplete="off">
           <div class="form-group">
             <input
               type="input"
               [(ngModel)]="register.username"
               class="form-control"
-              id="userName"
-              name="userName"
+              name="username"
               aria-describedby="userName"
+              usernameMatch
               placeholder="Username"
-              #username="ngModel"
               minlength="5"
               required
+              #username="ngModel"
             />
             <p style="color: grey; font-size: 10px">
               Enter your username with combination of number eg. username123
             </p>
 
-            <div
-              [hidden]="username.valid || username.untouched"
-              class="alert alert-danger"
-              style="font-size: 15px;margin-top: -18px;"
-            >
-              Username is required (minimum of 5 characters)
+            <div *ngIf="username.invalid && ( username.touched)">
+                <div *ngIf="!username.errors.alreadyExist" class="alert alert-danger"
+                  style="font-size: 15px;margin-top: -18px;">
+                  username already exist
+                </div>
+
+                <div *ngIf="username.errors.required" class="alert alert-danger"
+                  style="font-size: 15px;margin-top: -18px;">
+                  Username is required
+                </div>
+
+                <div *ngIf="username.errors.minlength" class="alert alert-danger"
+                  style="font-size: 15px;margin-top: -18px;">
+                  Username must be atleast 5 characters long
+                </div>
             </div>
+
+
           </div>
 
           <div class="form-row">
@@ -120,6 +132,7 @@
           <div
             *ngIf="country.value === 'Nigeria'; then thenBlock else elseBlock"
           ></div>
+          
           <ng-template #elseBlock>
             <div class="form-row">
               <div class="form-group col-md-5 mb-3">
@@ -148,20 +161,7 @@
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-3">
-                <input
-                  type="tel"
-                  [(ngModel)]="register.phone_number"
-                  class="form-control"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  aria-describedby="phoneNumber"
-                  placeholder="Phone Number"
-                  required
-                />
-              </div>
-              <div class="form-group col-md-6 mb-3">
+              <div class="form-group mb-3">
                 <input
                   type="email"
                   [(ngModel)]="register.email"
@@ -172,7 +172,6 @@
                   placeholder="Email Address"
                   required
                 />
-              </div>
             </div>
           </ng-template>
           <ng-template #thenBlock>
@@ -209,20 +208,7 @@
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-5 mb-3">
-                <input
-                  type="tel"
-                  [(ngModel)]="register.phone_number"
-                  class="form-control"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  aria-describedby="phoneNumber"
-                  placeholder="Phone Number"
-                  required
-                />
-              </div>
-              <div class="form-group col-md-7 mb-3">
+              <div class="form-group mb-3">
                 <input
                   type="input"
                   [(ngModel)]="register.residential_address"
@@ -234,8 +220,21 @@
                   required
                 />
               </div>
-            </div>
           </ng-template>
+
+              <div class="form-group mb-3">
+                <input type="tel" [(ngModel)]="register.phone_number" class="form-control" name="phoneNumber"
+                  aria-describedby="phoneNumber"
+                  pattern="^\+[0-9]{10,18}" placeholder="Phone Number"
+                  #phonenumber="ngModel" required />
+                <p style="color: grey; font-size: 10px">
+                  Enter your phonenumber with your country code. e.g +23408187163082
+                </p>
+                <div [hidden]="phonenumber.valid || phonenumber.untouched" class="alert alert-danger"
+                  style="font-size: 15px;margin-top: -18px;">
+                  Enter your phonenumber with your country code. e.g +23408187163082
+                </div>
+              </div>
 
           <div class="form-row">
             <div class="form-group col-md-6 mb-3">
@@ -317,7 +316,7 @@
               <p style="color: grey; font-size: 10px"></p>
 
               <div
-                [hidden]="confirmPassword.valid ||  confirmPassword.untouched"
+                *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
                 class="alert alert-danger"
                 style="font-size: 15px;"
               >
