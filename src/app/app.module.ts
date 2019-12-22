@@ -3,7 +3,7 @@ import { LoginComponent } from './registration/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NgxPrintModule } from 'ngx-print';
 
 import { AppComponent } from './app.component';
@@ -30,12 +30,11 @@ import { ToastrModule } from 'ngx-toastr';
     Angular4PaystackModule.forRoot('pk_test_a211b11643605eeecc1e6c10c6a0fec15b0c4a09'),
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     NgxPrintModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
-      timeOut: 90000,
+      timeOut: 300000,
       preventDuplicates: true,
     }), // ToastrModule added
     NgxLoadingModule.forRoot({}),

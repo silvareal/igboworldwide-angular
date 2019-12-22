@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Kaushan+Script|Lobster|Varela+Round&display=swap");
 
+
 .cert-container {
   font-family: "Varela Round",
   sans-serif;
@@ -8,6 +9,10 @@
   top: 50px;
   left: 0;
   right: 0;
+}
+
+.top-con {
+    max-height: 90vh !important;
 }
 
 .cert-template {
@@ -116,6 +121,11 @@ screen and (max-width: 991px) {
     .cert-extra {
       font-size: 12px;
     }
+
+.cert-sn {
+  display: none;
+  ;
+}
 }
 
 @media print,
@@ -149,6 +159,10 @@ screen and (max-width: 767px) {
       .cert-extra {
         font-size: 10px;
       }
+
+      .cert-sn {
+        display: none;;
+      }
 }
 
 @media print,
@@ -159,4 +173,9 @@ screen and (max-width: 520px) {
   .cert-none {
     display: none;
   }
+
+.cert-sn {
+  display: none;
+  ;
+}
 }

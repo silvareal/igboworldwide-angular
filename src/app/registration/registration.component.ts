@@ -18,7 +18,6 @@ export class RegistrationComponent implements OnInit {
   state: Array<any>;
   lga: Array<any>;
   locals: Array<any>;
-  handler: StripeCheckoutHandler;
 
   options: PaystackOptions = {
     amount: 1500 * 100,
@@ -1754,6 +1753,7 @@ export class RegistrationComponent implements OnInit {
       email: '',
       state_of_origin: '',
       local_government_area: '',
+      permanent_home_address: '',
       town: '',
       password: '',
       password_confirm: '',

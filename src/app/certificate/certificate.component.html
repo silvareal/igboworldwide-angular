@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container top-con">
   <div class="container">
     <ng-template #customLoadingTemplate>
       <div class="custom-class">
@@ -55,14 +55,18 @@
 
         <div class="top-cert-input cert-none">
           <div class="cert-input">
-            <p>{{this.auth.currentDate | date}}</p>
+            <p style="margin-top: 25px;">{{this.auth.currentDate | date}}</p>
             <p>DATE</p>
           </div>
 
           <div class="cert-input">
-            <p>Chief John Nnia Nwodo</p>
+            <img width="50" height="50" src="./assets/images/signature.png" alt="" srcset="">
             <p>PRESIDENT GENERAL <br />SIGNATURE</p>
           </div>
+        </div>
+
+        <div class="cert-sn">
+          <p style="text-align: right;padding: 80px; color: grey;">SN: {{ auth.id }}</p>
         </div>
       </div>
     </div>

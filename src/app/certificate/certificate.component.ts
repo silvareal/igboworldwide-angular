@@ -1,5 +1,7 @@
 import { UserService } from './../registration/user.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-certificate',
@@ -10,12 +12,13 @@ export class CertificateComponent implements OnInit {
   public loading = false;
 
   auth;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.loading = true;
 
     this.auth = {
+      id: '',
       first_name: '',
       surname: '',
       last_name: '',
@@ -27,12 +30,14 @@ export class CertificateComponent implements OnInit {
     this.userService.getUser().subscribe(
         data => {
         this.auth.first_name = data.first_name;
+        this.auth.id = data.id;
         this.auth.surname = data.surname;
         this.auth.last_name = data.last_name;
         this.auth.town = data.town;
         this.auth.state_of_origin = data.state_of_origin;
         this.auth.local_government_area = data.local_government_area;
         this.loading = false;
+        this.toastr.warning("print certificate in landscape layout ")
 
       },
         err => {
