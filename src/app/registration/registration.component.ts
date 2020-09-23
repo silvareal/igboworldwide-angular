@@ -1831,7 +1831,7 @@ export class RegistrationComponent implements OnInit {
     this.raveOptions = {
       PBFPubKey: 'FLWPUBK_TEST-98fdb6b68495f0d2dd2e9def1c3a189b-X',
       txref: `${Math.ceil(Math.random() * 10e10)}`,
-      amount: this.register.country_of_residence === 'Nigeria' ? 2000 : 5,
+      amount: this.register.country_of_residence === 'Nigeria' ? 2000 : 10,
       customer_email: this.register.email || 'akubosylvernus@gmail.com',
       onclose: () => this.paymentFailure(),
       callback: (response) => this.paymentSuccess(response),

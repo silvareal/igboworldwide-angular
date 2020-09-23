@@ -106,7 +106,15 @@ export class CertificateComponent implements OnInit {
           fontSize: 20,
           color: '#494e63',
           uppercase: true,
-          absolutePosition: { x: 230, y: 600 }
+          absolutePosition: { x: 270, y: 600 }
+        },
+        {
+          text: `${this.auth.id}`,
+          bold: true,
+          fontSize: 20,
+          color: '#494e63',
+          uppercase: true,
+          absolutePosition: { x: 500, y: 702 }
         }
       ]
     };
