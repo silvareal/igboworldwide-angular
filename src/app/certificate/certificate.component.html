@@ -1,25 +1,14 @@
-<div class="container top-con">
-  <div class="container">
+<div class="container top-con mt-5">
+  <div class="container" style="filter: blur(3px);">
     <ng-template #customLoadingTemplate>
       <div class="custom-class">
         <h3 style="text-align: center;">Generating Certificate ....</h3>
       </div>
     </ng-template>
     <div style="position: relative;" id="print-section" *ngIf="auth">
-      <img
-        src="./assets/images/indigbo.png"
-        style="width: 100%;"
-        alt=""
-        srcset=""
-      />
+      <img src="./assets/images/indigbo.png" style="width: 100%;" alt="" srcset="" />
       <div class="cert-container">
-        <img
-          class="cert-template"
-          src="./assets/images/logo.png"
-          style="width: 100%;"
-          alt=""
-          srcset=""
-        />
+        <img class="cert-template" src="./assets/images/logo.png" style="width: 100%;" alt="" srcset="" />
 
         <h4>OHANAEZE NDIGBO WORLDWIDE <br />MEMBERSHIP CERTIFICATE</h4>
         <p class="cert-extra">This is to certify that</p>
@@ -39,7 +28,7 @@
           </div>
 
           <div class="cert-input">
-            <p >{{ auth.local_government_area }}</p>
+            <p>{{ auth.local_government_area }}</p>
             <p>LOCAL GOVT.</p>
           </div>
 
@@ -50,7 +39,7 @@
         </div>
 
         <p class="cert-extra cert-none">
-          Is a registered member of<br/>Ohanaeze Ndigbo Worldwide
+          Is a registered member of<br />Ohanaeze Ndigbo Worldwide
         </p>
 
         <div class="top-cert-input cert-none">
@@ -71,20 +60,9 @@
       </div>
     </div>
   </div>
-  <button
-    [disabled]="!auth.first_name"
-    class="btn btn-success mb-3"
-    style="width: 100%;margin-top: 10px;"
-    styleSheetFile="assets/css/custom1.css"
-    printSectionId="print-section"
-    ngxPrint
-  >
-    <span class="glyphicon glyphicon-print"></span> print
+  <button class="btn btn-success mb-3 mt-3" style="width: 100%;margin-top: 10px;" (click)="generatePdf()">
+    <i class="fa fa-download" aria-hidden="true"></i> Download
   </button>
-  <ngx-loading
-    [show]="loading"
-    [config]="{ backdropBorderRadius: '3px' }"
-    [template]="customLoadingTemplate"
-  >
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
   </ngx-loading>
 </div>

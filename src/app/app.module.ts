@@ -8,7 +8,6 @@ import { NgxPrintModule } from 'ngx-print';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { Angular4PaystackModule } from 'angular4-paystack';
 import { HttpClientModule } from '@angular/common/http';
 import { CertificateComponent } from './certificate/certificate.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +26,6 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    Angular4PaystackModule.forRoot('pk_test_a211b11643605eeecc1e6c10c6a0fec15b0c4a09'),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -38,7 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true,
     }), // ToastrModule added
     NgxLoadingModule.forRoot({}),
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

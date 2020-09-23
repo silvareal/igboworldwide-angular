@@ -7,8 +7,8 @@ import { AuthGuardService } from './guards/auth-guard.service';
 
 
 const routes: Routes = [
-  { path: 'register', component: RegistrationComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegistrationComponent, runGuardsAndResolvers: 'always' },
+  { path: 'login', component: LoginComponent, runGuardsAndResolvers: 'always' },
   {
     path: 'certificate', component: CertificateComponent, canActivate: [AuthGuardService]
   },
@@ -23,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

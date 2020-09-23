@@ -1,7 +1,4 @@
 <div class="container">
-  <ng-template #customLoadingTemplate>
-    <div class="custom-class"></div>
-  </ng-template>
   <div class="alert alert-dark reg-alert" role="alert">
     <div class="row" style="margin: 25px 0;">
       <div class="col align-self-center">
@@ -13,10 +10,19 @@
           </div>
 
           <p style="color: grey; margin-bottom: 30px;">
-            Register as a member of ohanaezendigboworldwide
+            Register as a member of
+            ohanaezendigboworldwide
           </p>
         </div>
+        <div *ngIf="title === 'successfull'" class="alert alert-success" role="alert">
+          <i class="fa fa-check-circle mr-1" style="color:green; font-size: 24px;"></i> Registration Successful,
+          Login and generate your certificate <small>(scroll to the bottom and click on Login)</small>
+        </div>
 
+        <div *ngIf="title === 'error'" class="alert alert-danger" role="alert">
+          <i class="fa fa-exclamation-circle mr-1" style="color:red; font-size: 24px;"></i>Registration error... contact
+          support team
+        </div>
         <form #form="ngForm" novalidate autocomplete="off">
           <div class="form-group">
             <input type="input" [(ngModel)]="register.username" class="form-control" name="username"
@@ -144,7 +150,7 @@
                 placeholder="Residential Address" required />
             </div>
           </ng-template>
-          
+
           <div class="form-group mb-3">
             <input type="tel" [(ngModel)]="register.phone_number" class="form-control" name="phonenumber"
               aria-describedby="phoneNumber" pattern="^\+[0-9]{10,18}" placeholder="Phone Number" #phonenumber="ngModel"
@@ -215,16 +221,9 @@
             </div>
           </div>
 
+          <input type="submit" [disabled]="form.invalid" class="btn btn-success" style="width: 100%; margin-top: 15px;"
+            value="Register Now" (click)="madePayment()" />
 
-          <input [hidden]="country.value === 'Nigeria'" type="submit" class="btn btn-success"
-            style="width: 100%; margin-top: 15px;" value="Register Now" angular4-paystack
-            [paystackOptions]="options_dollars" (paymentInit)="paymentInit()" (close)="paymentCancel()"
-            (onClose)="paymentOnClose()" (callback)="paymentDone($event)" [disabled]="form.invalid" />
-
-          <input [hidden]="country.value !== 'Nigeria'" type="submit" class="btn btn-success"
-            style="width: 100%; margin-top: 15px;" value="Register Now" angular4-paystack [paystackOptions]="options"
-            (paymentInit)="paymentInit()" (close)="paymentCancel()" (onClose)="paymentOnClose()"
-            (callback)="paymentDone($event)" [disabled]="form.invalid" />
         </form>
       </div>
     </div>
@@ -234,6 +233,4 @@
     Already a member?
     <a [routerLink]="['/login']" style="color: black; font-weight: 900" href="">Login</a>
   </p>
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
-  </ngx-loading>
 </div>
